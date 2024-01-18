@@ -1,6 +1,6 @@
 auto_scale_lr = dict(base_batch_size=16, enable=False)
 backend_args = None
-data_root = './ballondatasets/balloon'
+data_root = './header_row_det'
 dataset_type = 'CocoDataset'
 default_hooks = dict(
     checkpoint=dict(interval=3, type='CheckpointHook'),
@@ -234,11 +234,11 @@ test_cfg = dict(type='TestLoop')
 test_dataloader = dict(
     batch_size=1,
     dataset=dict(
-        ann_file='val/annotation_coco.json',
+        ann_file='val/val.json',
         backend_args=None,
         data_prefix=dict(img='val/'),
-        data_root='./ballondatasets/balloon',
-        metainfo=dict(classes=('balloon', ), palette=[
+        data_root='./header_row_det',
+        metainfo=dict(classes=('header', 'row',), palette=[
             (
                 220,
                 20,
@@ -269,7 +269,7 @@ test_dataloader = dict(
     persistent_workers=True,
     sampler=dict(shuffle=False, type='DefaultSampler'))
 test_evaluator = dict(
-    ann_file='./ballondatasets/balloon/val/annotation_coco.json',
+    ann_file='./header_row_det/val/val.json',
     backend_args=None,
     format_only=False,
     metric=[
@@ -299,12 +299,12 @@ train_dataloader = dict(
     batch_sampler=dict(type='AspectRatioBatchSampler'),
     batch_size=2,
     dataset=dict(
-        ann_file='train/annotation_coco.json',
+        ann_file='train/train.json',
         backend_args=None,
         data_prefix=dict(img='train/'),
-        data_root='./ballondatasets/balloon',
+        data_root='./header_row_det',
         filter_cfg=dict(filter_empty_gt=True, min_size=32),
-        metainfo=dict(classes=('balloon', ), palette=[
+        metainfo=dict(classes=('header', 'row',), palette=[
             (
                 220,
                 20,
@@ -397,11 +397,11 @@ val_cfg = dict(type='ValLoop')
 val_dataloader = dict(
     batch_size=1,
     dataset=dict(
-        ann_file='val/annotation_coco.json',
+        ann_file='val/val.json',
         backend_args=None,
         data_prefix=dict(img='val/'),
-        data_root='./ballondatasets/balloon',
-        metainfo=dict(classes=('balloon', ), palette=[
+        data_root='./header_row_det',
+        metainfo=dict(classes=('header', 'row',), palette=[
             (
                 220,
                 20,
@@ -432,7 +432,7 @@ val_dataloader = dict(
     persistent_workers=True,
     sampler=dict(shuffle=False, type='DefaultSampler'))
 val_evaluator = dict(
-    ann_file='./ballondatasets/balloon/val/annotation_coco.json',
+    ann_file='./header_row_det/val/val.json',
     backend_args=None,
     format_only=False,
     metric=[
